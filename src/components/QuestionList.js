@@ -1,21 +1,16 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function QuestionListItem (props) {
-  const {onClick = () => {}} = props;
-
-  const handleClick = event => {
-    event.preventDefault();
-    onClick(props.id);
-  }
   return (
     <div className='QuestionListItem'>
-      <a href onClick={handleClick}>{props.title}</a>
+      <Link to={`/questions/${props.id}`}>{props.title}</Link>
     </div>
   )
 }
 
 function QuestionList (props) {
-  const {data = [], onQuestionClick = () => {}} = props;
+  const {data = []} = props;
 
   return (
     <div className='QuestionList'>
@@ -23,7 +18,6 @@ function QuestionList (props) {
         data.map(
           (question) => (
             <QuestionListItem
-              onClick={onQuestionClick}
               key={question.id}
               {...question} />
           )

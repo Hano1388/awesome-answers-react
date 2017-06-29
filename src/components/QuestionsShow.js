@@ -11,7 +11,8 @@ class QuestionsShow extends Component {
   }
 
   componentDidMount () {
-    getQuestion(this.props.id)
+    const {id} = this.props.match.params;
+    getQuestion(id)
       .then(question => {
         this.setState({question});
       })
