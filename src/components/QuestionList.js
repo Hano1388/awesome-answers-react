@@ -1,22 +1,31 @@
 import React from 'react';
 
 function QuestionListItem (props) {
+  const {onClick = () => {}} = props;
+
+  const handleClick = event => {
+    event.preventDefault();
+    onClick(props.id);
+  }
   return (
     <div className='QuestionListItem'>
-      {props.title}
+      <a href onClick={handleClick}>{props.title}</a>
     </div>
   )
 }
 
 function QuestionList (props) {
-  const {data = []} = props;
+  const {data = [], onQuestionClick = () => {}} = props;
 
   return (
     <div className='QuestionList'>
       {
         data.map(
           (question) => (
-            <QuestionListItem key={question.id} {...question} />
+            <QuestionListItem
+              onClick={onQuestionClick}
+              key={question.id}
+              {...question} />
           )
         )
       }

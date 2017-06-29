@@ -10,6 +10,7 @@ class QuestionsIndex extends Component {
       questions: []
     };
   }
+
   componentDidMount () {
     getQuestions()
       .then(questions => {
@@ -21,7 +22,9 @@ class QuestionsIndex extends Component {
     return (
       <div className='QuestionsIndex'>
         <h2>Questions</h2>
-        <QuestionList data={this.state.questions} />
+        <QuestionList
+          onQuestionClick={this.props.onQuestionClick}
+          data={this.state.questions} />
       </div>
     );
   }
